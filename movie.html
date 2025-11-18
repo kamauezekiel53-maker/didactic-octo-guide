@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Movie Hub — Movie</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="topbar">
+    <a href="index.html" class="back">← Home</a>
+    <div class="brand">Movie Hub</div>
+  </header>
+
+  <main class="container">
+    <section id="infoBox" class="info">
+      <h3>Loading movie...</h3>
+    </section>
+
+    <section class="player-wrap">
+      <div id="trailerContainer" class="trailer"></div>
+
+      <div class="playerCard">
+        <video id="player" controls preload="metadata">
+          <source id="playerSource" src="" type="video/mp4">
+          Your browser does not support HTML5 video.
+        </video>
+
+        <div class="controls">
+          <select id="qualitySelect" class="select"><option value="">Select quality</option></select>
+          <select id="subtitleSelect" class="select"><option value="">Subtitles (none)</option></select>
+          <button id="togglePip" class="btn">PIP</button>
+          <a id="openSource" class="btn" target="_blank">Open Source</a>
+          <a id="downloadBtn" class="btn" download>Download</a>
+        </div>
+
+        <div class="small">Quick sources:</div>
+        <div id="quickSources" class="row"></div>
+        <div class="small">Available subtitles:</div>
+        <div id="quickSubs" class="row"></div>
+      </div>
+    </section>
+  </main>
+
+  <script src="app.js"></script>
+  <script>
+    // auto-load movie on this page
+    const params = new URLSearchParams(window.location.search);
+    const id = params.get('id');
+    if (id) selectMovie(id);
+    else document.getElementById('infoBox').innerHTML = '<h3>No movie selected</h3>';
+  </script>
+</body>
+</html> 
