@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Movie Hub — Series</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="topbar">
+    <a href="index.html" class="back">← Home</a>
+    <div class="brand">Movie Hub</div>
+  </header>
+
+  <main class="container">
+    <section id="seriesInfo" class="info"><h3>Loading series...</h3></section>
+
+    <section id="seasons" class="seasons"></section>
+
+    <section id="episodesWrap" class="episodesWrap" style="display:none">
+      <h3 id="episodesTitle">Episodes</h3>
+      <div id="episodes" class="grid"></div>
+    </section>
+
+    <section id="episodePlayer" style="display:none">
+      <h3 id="episodeName"></h3>
+      <video id="episodeVideo" controls style="width:100%"><source id="episodeSource"></video>
+      <div id="episodeSources" class="row"></div>
+    </section>
+  </main>
+
+  <script src="app.js"></script>
+  <script>
+    const p = new URLSearchParams(window.location.search);
+    const sid = p.get('id'); // series id
+    if (sid) loadSeries(sid);
+    else document.getElementById('seriesInfo').innerHTML = '<h3>No series selected</h3>';
+  </script>
+</body>
+</html> 
